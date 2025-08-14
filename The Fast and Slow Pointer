@@ -1,0 +1,55 @@
+The Fast and Slow Pointer (Tortoise and Hare) technique uses two pointers moving at 
+different speeds to detect cycles or find middle elements in linked lists and arrays. 
+It’s efficient, using O(1) extra space and often O(n) time.
+
+
+Example-1(https://leetcode.com/problems/linked-list-cycle-ii/)
+
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+
+        // Step 1: Detect if cycle exists
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+                // Step 2: Find the start of the cycle
+                slow = head;
+                while (slow != fast) {
+                    slow = slow.next;
+                    fast = fast.next;
+                }
+                return slow;
+            }
+        }
+        return null; // No cycle
+    }
+}
+
+
+example-2(https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
+
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+
+        ListNode first = dummy;
+        ListNode second = dummy;
+        for (int i = 0; i <= n; i++) {
+            first = first.next;
+        }
+        while (first != null) {
+            first = first.next;
+            second = second.next;
+        }
+
+        second.next = second.next.next;
+
+        return dummy.next; 
+    }
+}
+
