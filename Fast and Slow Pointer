@@ -1,0 +1,1 @@
+The Fast and Slow Pointer (Tortoise and Hare) technique uses two pointers moving at different speeds to detect cycles or find middle elements in linked lists and arrays. It’s efficient, using O(1) extra space and often O(n) time.
